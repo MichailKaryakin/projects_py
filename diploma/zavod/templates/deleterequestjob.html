@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <br>
+    <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+        <h3>{{pos.id_work}}</h3>
+        <form class="lead" method="post">
+            {% csrf_token %}
+            <div><strong>Оборудование: </strong>
+                {% if pos.equipment %}
+                    {{ pos.equipment }}
+                {% else %}
+                    не назначено
+                {% endif %}
+            </div>
+            <div><strong>Сотрудник:</strong> {{pos.id_client}}</div>
+            <div><strong>Примечание:</strong> {{pos.note}}</div>
+            <div><strong>Дата начала работы:</strong> {{pos.date_start}}</div>
+            <div><strong>Дата завершения работы:</strong> {{pos.date_finish}}</div>
+            <div><strong>Отметка о выолнении работы: </strong>
+                {% if pos.result == False %}
+                    {% now "Y-m-d H:i" as todays_date %}
+                {% if todays_date > pos.date_finish|date:"Y-m-d H:i" %}
+                    просрочено
+                {%else%}
+                    в работе
+                {% endif %}
+                {%else%}
+                    выполнено
+                {%endif%}
+            </div>
+            <input type="submit" class="btn btn-warning" value="Удалить">
+            <a href="{% url 'requestsJob'%}" class="btn btn-primary">Отмена</a>
+        </form>
+    </div>
+</main>
+{% endblock %}

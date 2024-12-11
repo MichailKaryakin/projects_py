@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <br>
+    <div class="bg-body-tertiary p-4 rounded mb-4  mx-auto" style="background-color: #f8f9fa;width: 40%;">
+        <form class="lead" method="post">
+            {% csrf_token %}
+             <div>
+                 <label for="{{ form.id_work_id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Выберете работу</span></label>{{form.id_work | add_class:'form-control'}}
+             </div>
+            <div>
+                <label for="{{ form.equipment_id_for_label }}"><span style="font-weight: normal;">Выберете оборудование</span></label>{{form.equipment | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.id_work_id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Примечание</span></label>{{form.note | add_class:'form-control' | attr:"rows: 3"}}
+            </div>
+            <div>
+                <label for="{{ form.id_work_id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Дата окончания</span></label>{{form.date_finish | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.id_work_id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Результат</span></label>
+                 <span style="margin-right: 10px;"></span>{{form.result}}
+            </div>
+            <input type="submit" class="btn btn-warning" value="Сохранить">
+        </form>
+    </div>
+</main>
+{% endblock %}

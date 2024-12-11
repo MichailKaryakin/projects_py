@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="pb-2">{{title}}</h1>
+        </div>
+        {% if perms.zavod.change_work %}
+        <div class="col-auto">
+            <a href="{% url 'add_work' %}" class="btn btn-warning">Добавить услугу</a>
+        </div>
+        {% endif %}
+    </div>
+    {% for p in posts %}
+    <a href="{% url 'work' p.id %}" style="text-decoration: none; color: inherit;">
+        <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+            <h3>{{p.name}}</h3>
+            <div class="lead">
+                <div><strong>Срок:</strong> {{p.duration}}<strong> (в днях)</strong></div>
+                <div><strong>Цена:</strong> {{p.price}}<strong> (в рублях)</strong></div>
+                 <div><strong>Сложность:</strong> {{p.difficult}}</div>
+                <div><strong>Гарантия:</strong> {{p.garantiya}}<strong> (в годах)</strong></div>
+                <div><strong>Примечание:</strong> {{p.note}}</div>
+                <div><strong>Ответственный сотрудник:</strong> {{p.id_employee}}</div>
+            </div>
+            {% if perms.zavod.change_work %}
+            <a class="btn btn-lg btn-primary" href="{% url 'work-update' p.id %}" role="button">Изменить</a>
+            {% endif %}
+            {% if perms.zavod.delete_work %}
+            <a class="btn btn-lg btn-primary" href="{% url 'work-delete' p.id %}" role="button">Удалить</a>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</main>
+{% endblock %}

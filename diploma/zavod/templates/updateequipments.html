@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <br>
+    <div class="bg-body-tertiary p-4 rounded mb-4  mx-auto" style="background-color: #f8f9fa;width: 40%;">
+        <form class="lead" method="post">
+            {% csrf_token %}
+             <div>
+                 <label for="{{ form.mark.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Марка</span></label>{{form.mark | add_class:'form-control'}}
+             </div>
+            <div>
+                 <label for="{{ form.mark.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Модель</span></label>{{form.model | add_class:'form-control'}}
+             </div>
+            <div>
+                 <label for="{{ form.mark.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Бренд</span></label>{{form.brand | add_class:'form-control'}}
+             </div>
+            <div>
+                 <label for="{{ form.mark.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Срок службы</span></label>{{form.srok_sl | add_class:'form-control'}}
+             </div>
+            <div>
+                 <label for="{{ form.mark.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Гарантия</span></label>{{form.garantiya | add_class:'form-control'}}
+             </div>
+            <div>
+                 <label for="{{ form.mark.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Цена</span></label>{{form.price | add_class:'form-control'}}
+             </div>
+            <div>
+                <label for="{{ form.country.id_for_label }}"><span style="font-weight: normal;">Произведено в</span></label>{{form.country | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.date_release.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Дата производства</span></label>{{form.date_release | add_class:'form-control' | attr:"type:date"|attr:"pattern:\d{2}\.\d{2}\.\d{4}"|attr:"title:Введите дату в формате ДД.ММ.ГГГГ" }}
+            </div>
+            <br>
+            <input type="submit" class="btn btn-warning" value="Сохранить">
+        </form>
+    </div>
+</main>
+{% endblock %}

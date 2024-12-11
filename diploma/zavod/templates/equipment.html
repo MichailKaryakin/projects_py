@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+        <h3>{{post.mark}}</h3>
+        <div class="lead">
+            <div><strong>Произведено в:</strong> {{post.country}}</div>
+              <div><strong>Бренд:</strong> {{post.brand}}</div>
+                     <div><strong>Гарантия:</strong> {{post.garantiya}}</div>
+                     <div><strong>Модель:</strong> {{post.model}}</div>
+                     <div><strong>Срок службы:</strong> {{post.srok_sl}}</div>
+                     <div><strong>Цена:</strong> {{post.price}}</div>
+                    <div><strong>Произведено в:</strong> {{post.country}}</div>
+            <div><strong>Дата выпуска оборудования:</strong> {{post.date_release}}</div>
+        </div>
+    </div>
+</main>
+{% endblock %}

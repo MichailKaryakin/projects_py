@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+        <h3>{{post.id_work}}</h3>
+        <div class="lead">
+            <div><strong>Клиент:</strong> {{post.id_client}}</div>
+            <div><strong>Оборудование:</strong>
+                {% if post.equipment %}
+                    {{ post.equipment }}
+                {% else %}
+                    не назначено
+                {% endif %}
+            </div>
+            <div><strong>Примечание:</strong> {{post.note}}</div>
+            <div><strong>Дата начала работы:</strong> {{post.date_start}}</div>
+            <div><strong>Дата завершения работы:</strong> {{post.date_finish}}</div>
+            <div><strong>Результат:</strong>
+                {% if post.result == False %}
+                    {% now "Y-m-d H:i" as todays_date %}
+                {% if todays_date > post.date_finish|date:"Y-m-d H:i" %}
+                    просрочено
+                {%else%}
+                    в работе
+                {% endif %}
+                {%else%}
+                    выполнено
+                {%endif%}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

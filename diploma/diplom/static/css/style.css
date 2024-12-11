@@ -1,0 +1,27 @@
+body {
+    background: #2c2c2c;
+}
+.style {
+	color: RGB(215,40,40);
+	text-align: center
+	}
+.first_block {
+}
+.second_block {
+    display: none;
+}
+.first_block:hover + .second_block {
+    display: block;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}

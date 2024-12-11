@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="pb-2">{{title}}</h1>
+        </div>
+        {% if perms.zavod.change_work %}
+        <div class="col-auto">
+            <a href="{% url 'add_requestjob' %}" class="btn btn-warning">Добавить заявку</a>
+        </div>
+        {% endif %}
+    </div>
+    {% for p in posts %}
+    <a href="{% url 'requestJob' p.id %}" style="text-decoration: none; color: inherit;">
+        <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+            <h3>{{p.id_work}}</h3>
+            <div class="lead">
+                <div><strong>Клиент:</strong> {{p.id_client}}</div>
+                <div><strong>Оборудование:</strong>
+                    {% if p.equipment %}
+                        {{ p.equipment }}
+                    {% else %}
+                        не назначено
+                    {% endif %}
+                </div>
+                <div><strong>Примечание:</strong> {{p.note}}</div>
+                <div><strong>Дата начала работы:</strong> {{p.date_start}}</div>
+                <div><strong>Дата завершения работы:</strong> {{p.date_finish}}</div>
+                <div><strong>Результат:</strong>
+                    {% if p.result == False %}
+                        {% now "Y-m-d H:i" as todays_date %}
+                    {% if todays_date > p.date_finish|date:"Y-m-d H:i" %}
+                        просрочено
+                    {%else%}
+                        в работе
+                    {% endif %}
+                    {%else%}
+                        выполнено
+                    {%endif%}
+                </div>
+            </div>
+            {% if perms.zavod.change_requestjob %}
+                <a class="btn btn-lg btn-primary" href="{%url 'requestJob-update' p.id %}" role="button">Изменить</a>
+            {% endif %}
+            {% if perms.zavod.delete_requestjob %}
+                <a class="btn btn-lg btn-primary" href="{%url 'requestJob-delete' p.id %}" role="button">Удалить</a>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</main>
+{% endblock %}

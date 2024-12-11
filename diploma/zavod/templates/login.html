@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="form-signin mx-auto" style="width: 40%;">
+    <form method="post">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <div class="form-error">{{ f.errors }}</div>
+        <div class="form-floating" for="{{ f.id_for_label }}">{{f.label}}: </div>{{ f }}
+        <br>
+        {% endfor %}
+        <button class="btn btn-primary w-100 py-2" type="submit">Войти</button>
+    </form>
+</main>
+{% endblock %}

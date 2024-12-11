@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+        <h3>{{post.name}}</h3>
+        <div class="lead">
+            <div><strong>Срок:</strong> {{post.duration}}<strong> (в днях)</strong></div>
+            <div><strong>Цена:</strong> {{post.price}}<strong> (в рублях)</strong></div>
+            <div><strong>Сложность:</strong> {{post.difficult}}</div>
+                <div><strong>Гарантия:</strong> {{post.garantiya}}<strong> (в годах)</strong></div>
+            <div><strong>Примечание:</strong> {{post.note}}</div>
+            <div><strong>Сотрудик:</strong>
+                {% if post.id_employee %}
+                    {{ post.id_employee }}
+                {% else %}
+                    не назначен
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

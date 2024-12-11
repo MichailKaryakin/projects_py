@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <br>
+    <div class="bg-body-tertiary p-4 rounded mb-4  mx-auto" style="background-color: #f8f9fa;width: 40%;">
+        <form class="lead" method="post">
+            {% csrf_token %}
+             <div>
+                 <label for="{{ form.name.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Название</span></label>{{form.name | add_class:'form-control'}}
+             </div>
+            <div>
+                <label for="{{ form.duration.id_for_label }}"><span style="font-weight: normal;">Продолжительность</span></label>{{form.duration | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.price.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Цена</span></label>{{form.price | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.duration.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Примечание</span></label>{{form.note | add_class:'form-control' | attr:"rows: 3"}}
+            </div>
+            <div>
+                <label for="{{ form.id_employee.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Сотрудник</span></label>{{form.id_employee | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.id_employee.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Сложность</span></label>{{form.difficult | add_class:'form-control'}}
+            </div>
+            <div>
+                <label for="{{ form.id_employee.id_for_label }}" class="col-form-label"><span style="font-weight: normal;">Гарантия</span></label>{{form.garantiya | add_class:'form-control'}}
+            </div>
+            <br>
+            <input type="submit" class="btn btn-warning" value="Сохранить">
+        </form>
+    </div>
+</main>
+{% endblock %}

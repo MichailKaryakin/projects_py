@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    <br>
+    <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+        <h3>{{posts.mark}}</h3>
+        <form class="lead" method="post">
+            {% csrf_token %}
+            <div><strong>Произведено в:</strong> {{posts.country}}</div>
+            <div><strong>Дата выпуска оборудования:</strong> {{posts.date_release}}</div>
+            <input type="submit" class="btn btn-warning" value="Удалить">
+            <a href="{% url 'home'%}" class="btn btn-primary">Отмена</a>
+        </form>
+    </div>
+</main>
+{% endblock %}

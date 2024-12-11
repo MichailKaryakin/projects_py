@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<main class="container">
+    <h1 class="pb-2">{{title}}</h1>
+    {% for p in posts %}
+    <a href="{% url 'employee' p.id %}" style="text-decoration: none; color: inherit;">
+        <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+            <h3>{{p.username}}</h3>
+            <div class="lead">
+                <div><strong>Имя:</strong> {{p.first_name}}</div>
+                <div><strong>Фамилия:</strong> {{p.last_name}}</div>
+                 <div><strong>Почта:</strong> {{p.email}}</div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</main>
+{% endblock %}

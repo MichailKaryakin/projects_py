@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+
+{% if perms.zavod.view_equipment %}
+    <main class="container">
+        <div class="row">
+        <div class="col">
+            <h1 class="pb-2">{{title}}</h1>
+        </div>
+        {% if perms.zavod.change_work %}
+        <div class="col-auto">
+            <a href="{% url 'add_equipment' %}" class="btn btn-warning">Добавить оборудование</a>
+        </div>
+        {% endif %}
+    </div>
+        {% for p in posts %}
+        <a href="{% url 'equipment' p.id %}" style="text-decoration: none; color: inherit;">
+            <div class="bg-body-tertiary p-4 rounded mb-4" style="background-color: #f8f9fa;">
+                <h3>{{p.mark}}</h3>
+                <div class="lead">
+                     <div><strong>Бренд:</strong> {{p.brand}}</div>
+                     <div><strong>Гарантия:</strong> {{p.garantiya}}<strong>(в годах)</strong></div>
+                     <div><strong>Модель:</strong> {{p.model}}</div>
+                     <div><strong>Срок службы:</strong> {{p.srok_sl}} <strong>(в годах)</strong></div>
+                     <div><strong>Цена:</strong> {{p.price}} <strong>(в рублях)</strong></div>
+                    <div><strong>Произведено в:</strong> {{p.country}}</div>
+                    <div><strong>Дата выпуска оборудования:</strong> {{p.date_release}}</div>
+                </div>
+                {% if perms.zavod.change_work %}
+                    <a class="btn btn-lg btn-primary" href="{%url 'equipment-update' p.id %}" role="button">Изменить</a>
+                {% endif %}
+                {% if perms.zavod.change_work %}
+                    <a class="btn btn-lg btn-primary" href="{%url 'equipment-delete' p.id %}" role="button">Удалить</a>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </main>
+{% else %}
+    <main class="container">
+        <h1 class="pb-2">{{title}}</h1>
+        <div class="bg-body-tertiary p-5 rounded">
+            <h3>Оборудования отсутствуют</h3>
+        </div>
+    </main>
+{% endif %}
+{% endblock %}
