@@ -69,6 +69,7 @@ def analyze_accuracy_and_workload(h_initial, T):
 
 # Автоматический выбор шага интегрирования
 def auto_step_selection(h_initial, error_threshold):
+    global y, t
     h = h_initial
     rel_error = 100
     while rel_error > error_threshold:
