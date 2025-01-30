@@ -33,7 +33,8 @@ def iterative_simulation(lam, mu, initial_time, epsilon):
         q = (total_N - total_M) / total_N
         error = calculate_error(q, total_N)
         N_req, additional_time = required_observation_time(lam, mu,
-                                                           error)  # Получаем требуемое количество экспериментов и дополнительное время
+                                                           error)  # Получаем требуемое количество экспериментов и
+        # дополнительное время
         print(
             f"Итерация: {iteration}, Получено заявок: {total_N}, Обслужено заявок: {total_M},")
         print(

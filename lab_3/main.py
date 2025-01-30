@@ -8,9 +8,11 @@ import time
 # Инициализация генератора случайных чисел
 np.random.seed(int(time.time()))
 
+
 # Функция для генерации случайных чисел с заданным распределением
 def generate_random_numbers(n, a=0, b=math.tan(1)):
     return a + (b - a) * np.sqrt(np.random.uniform(size=n))
+
 
 # Теоретическая функция распределения
 def theoretical_distribution(x, a=0, b=math.tan(1)):
@@ -24,6 +26,7 @@ def theoretical_distribution(x, a=0, b=math.tan(1)):
     result[mask] = 1
 
     return result
+
 
 # Функция для сравнения статистической и теоретической функций распределения
 def compare_distributions(samples, theoretical_func):
@@ -42,14 +45,16 @@ def compare_distributions(samples, theoretical_func):
 
     return delta
 
+
 # Функция для оценки математического ожидания и дисперсии
 def estimate_mean_and_variance(samples):
     mean = np.mean(samples)
     variance = np.var(samples)
     return mean, variance
 
+
 # Пример использования
-sample_sizes = [50, 100, 1000, 10**5]
+sample_sizes = [50, 100, 1000, 10 ** 5]
 for size in sample_sizes:
     samples = generate_random_numbers(size)
     mean, variance = estimate_mean_and_variance(samples)
